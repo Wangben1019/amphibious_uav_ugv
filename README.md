@@ -30,3 +30,45 @@
     └── user_package
 ```
 
+## Install
+
+### Install ros
+
+**鱼香ros一键安装**
+
+```
+wget http://fishros.com/install -O fishros && . fishros
+```
+
+### Install mavros
+
+[官网文档](https://docs.px4.io/main/zh/ros/mavros_installation.html)
+
+**直接安装mavros以安装好依赖，用于编译**
+
+```bash
+sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ros-${ROS_DISTRO}-mavros-msgs
+
+./install_geographiclib_datasets.sh
+```
+
+### Install other prerequisites
+
+ ```bash
+ sudo apt install libusb-dev
+ 
+ sudo apt install libpcap-dev
+ 
+ sudo apt install ros-noetic-teb-local-planner
+ 
+ sudo apt install ros-noetic-pointcloud-to-laserscan
+ 
+ sudo apt install tf2*
+ 
+ # 安装communication_rely两个package后
+ 
+ sudo apt install libqt5serialport5-dev
+ 
+ # 安装Livox的两个SDK
+ ```
+
