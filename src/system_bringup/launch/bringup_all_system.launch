@@ -1,0 +1,9 @@
+<launch>
+
+    <include file="$(find system_bringup)/launch/odom_bringup_.launch" />
+
+    <include file="$(find system_bringup)/launch/3d_uav_bringup/system_bringup_uav_without_odom.launch" />
+
+    <include file="$(find system_bringup)/launch/3d_ugv_bringup/system_bringup_ugv_without_odom.launch" />
+    
+</launch>

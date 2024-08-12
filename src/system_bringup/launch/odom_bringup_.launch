@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find livox_ros_driver2)/launch/msg_MID360.launch" />
+
+    <include file="$(find fast_lio)/launch/mapping_mid360_distributed.launch" />
+    
+</launch>

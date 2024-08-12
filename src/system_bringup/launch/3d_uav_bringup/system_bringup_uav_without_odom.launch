@@ -1,0 +1,7 @@
+<launch>
+
+    <include file="$(find vehicle_simulator)/launch/system_real_robot.launch" />
+
+    <!-- <include file="$(find mavros)/launch/px4.launch" /> -->
+    
+</launch>
