@@ -54,7 +54,14 @@ sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ro
 
 ### Install other prerequisites
 
-#### 方法1：
+#### 方法1（建议）：
+
+```bash
+chmod +x install_lib.sh
+./install_lib.sh
+```
+
+#### 方法2：
 
  ```bash
  sudo apt install libusb-dev
@@ -72,12 +79,74 @@ sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ro
  # 安装communication_rely两个package
  
  # 安装Livox的两个SDK
+ 
+ # 这四个均在目录prerequisites_lib下
  ```
 
-#### 方法2：
+## Build
+
+### 未使用clangd
+
+`catkin build`
+
+### 使用clangd
 
 ```bash
-chmod +x install_lib.sh
-./install_lib.sh
+# 编译程序并生成compile_commands.json
+catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+# 将所有的compile_commands.json集成到build目录下，并更改部分内容
+cd build
+cat ./*/compile_commands.json > ./compile_commands.json
+sed -i 's/\]\[/\,/g' compile_commands.json
+```
+
+## Run
+
+### 更改雷达ID
+
+更改`./amphibious_uav_ugv/src/3DLidar/livox_ros_driver2/config`中的5个ip
+
+### 首先刷新环境变量
+
+```bash
+source ./devel/setup.bash
+```
+
+**以下指令均为并行，选择其一启动即可**
+
+### 运行整个两栖系统
+
+```bash
+roslaunch system_bringup bringup_all_system.launch
+```
+
+### 单独运行里程计
+
+```bash
+roslaunch system_bringup odom_bringup_.launch
+```
+
+### 单独运行无人车导航（已启动里程计）
+
+```bash
+roslaunch system_bringup system_bringup_ugv_alone.launch
+```
+
+### 单独运行无人机导航（已启动里程计）
+
+```bash
+roslaunch system_bringup system_bringup_uav_alone.launch
+```
+
+### 单独运行无人车导航（未启动里程计，可配合单独运行里程计使用）
+
+```bash
+roslaunch system_bringup system_bringup_ugv_without_odom.launch
+```
+
+### 单独运行无人机导航（未启动里程计，可配合单独运行里程计使用）
+
+```bash
+roslaunch system_bringup system_bringup_uav_without_odom.launch
 ```
 
