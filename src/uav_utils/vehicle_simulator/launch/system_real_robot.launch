@@ -1,26 +1,29 @@
 <launch>
 
+  <!-- 里程计话题 -->
   <arg name="stateEstimationTopic" default="/Odometry"/>
+  <!-- 点云话题 -->
   <arg name="depthCloudTopic" default="/cloud_registered"/>
+  <!-- 距离传感器和状态估计传感器之间的相对延迟 -->
   <arg name="depthCloudDelay" default="0"/>
+  <!-- 距离传感器对于车辆中心俯仰角的偏移量 -->
   <arg name="depthCamPitchOffset" default="0"/>
+  <!-- 距离传感器对于车辆中心X轴的偏移量 -->
   <arg name="depthCamXOffset" default="0"/>
+  <!-- 距离传感器对于车辆中心Y轴的偏移量 -->
   <arg name="depthCamYOffset" default="0"/>
+  <!-- 距离传感器对于车辆中心Z轴的偏移量 -->
   <arg name="depthCamZOffset" default="0"/>
+  <!-- 是否状态估计传感器和车头反着装 -->
   <arg name="trackingCamBackward" default="false"/>
+  <!-- 状态估计传感器对于车辆中心X轴的偏移量 -->
   <arg name="trackingCamXOffset" default="0"/>
+  <!-- 状态估计传感器对于车辆中心Y轴的偏移量 -->
   <arg name="trackingCamYOffset" default="0"/>
+  <!-- 状态估计传感器对于车辆中心Z轴的偏移量 -->
   <arg name="trackingCamZOffset" default="0"/>
   <arg name="trackingCamScale" default="1.0"/>
-  <arg name="vehicleX" default="0"/>
-  <arg name="vehicleY" default="0"/>
-  <arg name="vehicleZ" default="1.0"/>
-  <arg name="vehicleYaw" default="0"/>
-  <arg name="use_gazebo" default="true"/>
-  <arg name="gazebo_gui" default="true"/>
-  <arg name="world_name" default="office"/>
   <arg name="config" default="indoor"/>
-  <arg name="realtime_factor" default="1.0"/>
 
   <include file="$(find ps3joy)/launch/ps3.launch" />
 

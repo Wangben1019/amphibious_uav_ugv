@@ -818,6 +818,7 @@ int main(int argc, char** argv)
   ros::Publisher pubPath = nh.advertise<nav_msgs::Path> ("/track_path", 5);
   pubPathPointer = &pubPath;
 
+  // ros::Publisher pubControl = nh.advertise<geometry_msgs::TwistStamped> ("/attitude_control", 5);
   ros::Publisher pubControl = nh.advertise<geometry_msgs::TwistStamped> ("/mavros/setpoint_velocity/cmd_vel", 5);
   pubControlPointer = &pubControl;
 

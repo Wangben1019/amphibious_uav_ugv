@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="stateEstimationTopic" default="/state_estimation"/>
+  <arg name="stateEstimationTopic" default="/Odometry"/>
   <arg name="depthCamPitchOffset" default="0"/>
   <arg name="trackingCamBackward" default="false"/>
   <arg name="trackingCamXOffset" default="0"/>

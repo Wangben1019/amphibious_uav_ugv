@@ -1,20 +1,33 @@
 <launch>
 
+  <!-- 里程计话题 -->
   <arg name="stateEstimationTopic" default="/state_estimation"/>
+  <!-- 点云话题 -->
   <arg name="depthCloudTopic" default="/rgbd_camera/depth/points"/>
   <arg name="autonomyMode" default="false"/>
+  <!-- 距离传感器和状态估计传感器之间的相对延迟 -->
   <arg name="depthCloudDelay" default="0"/>
+  <!-- 距离传感器对于车辆中心俯仰角的偏移量 -->
   <arg name="depthCamPitchOffset" default="0"/>
+  <!-- 距离传感器对于车辆中心X轴的偏移量 -->
   <arg name="depthCamXOffset" default="0"/>
+  <!-- 距离传感器对于车辆中心Y轴的偏移量 -->
   <arg name="depthCamYOffset" default="0"/>
+  <!-- 距离传感器对于车辆中心Z轴的偏移量 -->
   <arg name="depthCamZOffset" default="0"/>
+  <!-- 是否状态估计传感器和车头反着装 -->
   <arg name="trackingCamBackward" default="false"/>
+  <!-- 状态估计传感器对于车辆中心X轴的偏移量 -->
   <arg name="trackingCamXOffset" default="0"/>
+  <!-- 状态估计传感器对于车辆中心Y轴的偏移量 -->
   <arg name="trackingCamYOffset" default="0"/>
+  <!-- 状态估计传感器对于车辆中心Z轴的偏移量 -->
   <arg name="trackingCamZOffset" default="0"/>
   <arg name="trackingCamScale" default="1.0"/>
+  <!-- 停止容忍距离 -->
   <arg name="stopDis" default="0.5"/>
   <arg name="shiftGoalAtStart" default="false"/>
+  <!-- 初始目标点 -->
   <arg name="goalX" default="0"/>
   <arg name="goalY" default="0"/>
   <arg name="goalZ" default="1.0"/>
@@ -37,11 +50,16 @@
     <param name="scanVoxelSize" type="double" value="0.1" />
     <param name="pointPerPathThre" type="int" value="2" />
     <param name="maxRange" type="double" value="4.0" />
+    <!-- 最大高度 -->
     <param name="maxElev" type="double" value="5.0" />
     <param name="keepSurrCloud" type="bool" value="true" />
+    <!-- 水平方向上堆叠传感器数据距离 -->
     <param name="keepHoriDis" type="double" value="1.0" />
+    <!-- 垂直方向上堆叠传感器数据距离 -->
     <param name="keepVertDis" type="double" value="0.5" />
+    <!-- 最低飞行限制 -->
     <param name="lowerBoundZ" type="double" value="-1.2" />
+    <!-- 最高飞行限制 -->
     <param name="upperBoundZ" type="double" value="1.2" />
     <param name="pitchDiffLimit" type="double" value="35.0" />
     <param name="pitchWeight" type="double" value="0.03" />
@@ -64,6 +82,7 @@
     <param name="stateEstimationTopic" value="$(arg stateEstimationTopic)" />
     <param name="desiredTrajFile" type="string" value="$(env HOME)/Desktop/trajectory_desired.txt" />
     <param name="executedTrajFile" type="string" value="$(env HOME)/Desktop/trajectory_executed.txt" />
+    <!-- 在计算机桌面上记录所需和执行的轨迹。比较轨迹以评估路径跟随性能 -->
     <param name="saveTrajectory" type="bool" value="false" />
     <param name="saveTrajInverval" type="double" value="0.1" />
     <param name="waypointTest" type="bool" value="false" />
@@ -79,34 +98,56 @@
     <param name="trackingCamZOffset" value="$(arg trackingCamZOffset)" />
     <param name="trackingCamScale" value="$(arg trackingCamScale)" />
     <param name="trackPitch" type="double" value="0" />
+    <!-- 相对于速度的前视距离比例（使无人机直线飞行调整） -->
     <param name="lookAheadScale" type="double" value="0.2" />
+    <!-- 最小前视距离（使无人机直线飞行调整） -->
     <param name="minLookAheadDis" type="double" value="0.2" />
+    <!-- 航点飞行中的最小速度 -->
     <param name="minSpeed" type="double" value="0.5" />
+    <!-- 航点飞行中的最大速度 -->
     <param name="maxSpeed" type="double" value="2.0" />
+    <!-- 水平加速度增益（使无人机绕圈飞行调整） -->
     <param name="accXYGain" type="double" value="0.05" />
+    <!-- 飞行中的水平速度增益 -->
     <param name="velXYGain" type="double" value="0.4" />
+    <!-- 飞行中的位置增益 -->
     <param name="posXYGain" type="double" value="0.05" />
+    <!-- 悬停中的水平速度增益 -->
     <param name="stopVelXYGain" type="double" value="0.2" />
+    <!-- 悬停中的位置增益 -->
     <param name="stopPosXYGain" type="double" value="0.2" />
+    <!-- 设置航点飞行中的最大速度增量 -->
     <param name="smoothIncrSpeed" type="double" value="0.75" />
     <param name="maxRollPitch" type="double" value="30.0" />
     <param name="yawRateScale" type="double" value="1.0" />
+    <!-- 偏航增益 -->
     <param name="yawGain" type="double" value="2.0" />
+    <!-- 车辆转弯时增加偏航增益的比例（使无人机绕圈飞行调整） -->
     <param name="yawBoostScale" type="double" value="2.0" />
+    <!-- 最大偏航率（偏航率：yaw轴速度） -->
     <param name="maxRateByYaw" type="double" value="60.0" />
     <param name="velZScale" type="double" value="1.0" />
+    <!-- 垂直位置增益 -->
     <param name="posZGain" type="double" value="1.5" />
+    <!-- 车辆上升或下降时增加垂直位置增益的比例（使无人机上升或下降调整） -->
     <param name="posZBoostScale" type="double" value="2.0" />
+    <!-- 垂直最大速度 -->
     <param name="maxVelByPosZ" type="double" value="0.5" />
+    <!-- 手动飞行中的最大水平速度 -->
     <param name="manualSpeedXY" type="double" value="2.0" />
+    <!-- 手动飞行中的最大垂直速度 -->
     <param name="manualSpeedZ" type="double" value="1.0" />
+    <!-- 手动飞行中的偏航率 -->
     <param name="manualYawRate" type="double" value="60.0" />
+    <!-- 车辆转弯时减速的速率（使无人机绕圈飞行调整） -->
     <param name="slowTurnRate" type="double" value="0.75" />
+    <!-- 触发减速的最小路径曲率（使无人机绕圈飞行调整） -->
     <param name="minSlowTurnCurv" type="double" value="0.9" />
     <param name="minSlowTurnInterval" type="double" value="1.0" />
     <param name="minStopRotInterval" type="double" value="1.0" />
     <param name="stopRotDelayTime" type="double" value="0" />
     <param name="stopRotDis" type="double" value="1.0" />
+    <!-- 车辆在飞向航点之前停止并转弯的航点角度 -->
     <param name="stopRotYaw1" type="double" value="90.0" />
     <param name="stopRotYaw2" type="double" value="10.0" />
     <param name="stopDis" value="$(arg stopDis)" />
