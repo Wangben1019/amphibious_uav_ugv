@@ -54,6 +54,8 @@ sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ro
 
 ### Install other prerequisites
 
+#### 方法1：
+
  ```bash
  sudo apt install libusb-dev
  
@@ -65,10 +67,17 @@ sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ro
  
  sudo apt install tf2*
  
- # 安装communication_rely两个package后
- 
  sudo apt install libqt5serialport5-dev
+ 
+ # 安装communication_rely两个package
  
  # 安装Livox的两个SDK
  ```
+
+#### 方法2：
+
+```bash
+chmod +x install_lib.sh
+./install_lib.sh
+```
 
